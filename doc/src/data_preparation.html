@@ -1,0 +1,980 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>src.data_preparation API documentation</title>
+<meta name="description" content="Utilitary functions to build new features and save the datasets." />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML" integrity="sha256-kZafAc6mZvK3W3v1pHOcUix30OHQN6pU/NO2oFkqZVw=" crossorigin></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>src.data_preparation</code></h1>
+</header>
+<section id="section-intro">
+<p>Utilitary functions to build new features and save the datasets.</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;Utilitary functions to build new features and save the datasets.&#34;&#34;&#34;
+
+
+import argparse
+
+from typing import Dict, List, Optional, Tuple
+
+import warnings
+
+import pandas as pd
+from pandas import DataFrame
+
+from sklearn.utils import shuffle
+from sklearn.preprocessing import StandardScaler, MinMaxScaler
+
+
+from preprocessing.resampling import training_resample
+from preprocessing.features.groups import create_families_feat, create_soil_feat
+from preprocessing.features.inference import correct_feat_value
+from preprocessing.features.knowledge_domain import create_kd_feat
+from preprocessing.features.log_transf import create_log_feat
+from preprocessing.features.polynomial import create_poly_feat
+from preprocessing.features.statistics import create_stat_feat
+from preprocessing.features.sum_diff import create_pm_feat
+from preprocessing.reduction.droping import drop_corr_feat, drop_list_feat
+from preprocessing.reduction.merger import merge_binary_feat
+from preprocessing.reduction.pca import perform_pca
+
+from utils.args_fmt import float_zero_one
+
+
+warnings.filterwarnings(&#34;ignore&#34;, message=&#34;After over-sampling, the number of samples &#34;)
+
+
+def create_features(
+    seed: int = 42,
+    correct_feat: Optional[List[str]] = None,
+    value_to_replace: float = 0.,
+    binary_feat: Optional[List[str]] = None,
+    log_feat: Optional[List[str]] = None,
+    stat_feat: Optional[List[str]] = None,
+    pm_feat: Optional[List[str]] = None,
+    kd_feat: Optional[List[str]] = None,
+    families_feat: Optional[List[str]] = None,
+    soil_feat: Optional[List[str]] = None,
+    fixed_poly_feat: Optional[List[str]] = None,
+    poly_feat: Optional[List[str]] = None,
+    all_poly_feat: bool = False,
+    poly_degree: int = 2,
+    excl_feat: Optional[List[str]] = None,
+    corr_threshold: float = 0.8,
+    rescale_data: bool = True,
+    scaling_method: str = &#34;standard&#34;,
+    pca_ratio: float = 0.95,
+    nb_sampling: int = 0,
+    manual_resampling: Optional[Dict[int, int]] = None,
+    save_data: bool = True,
+    file_suffix: str = &#34;final&#34;
+) -&gt; Tuple[DataFrame, ...]:
+    &#34;&#34;&#34;Retrieve local data files and perform preprocessing oprations.
+
+    Parameters
+    ----------
+    seed : int, default=42
+        Seed to use everywhere for reproducibility.
+
+    correct_feat : optional list of str, default=None
+        List of features where a specific value has to be replaced.
+
+    value_to_replace : float, default=0.0
+        Value to replace by predictions.
+
+    binary_feat : optional list of str, default=None
+        List of binary features to merge. The name of a binary feature is expected to be of the
+        form &#34;Ax&#34;. A the base and final feature. x is the number of each related binary feature.
+
+    log_feat : optional list of str, default=None
+        List of logarithm features. The name of a log feature must be an existing feature.
+
+    stat_feat : optional list of str, default=None
+        List of stat features. The name of a stat feature must be either &#34;Max&#34;, &#34;Min&#34;, &#34;Mean&#34;,
+        &#34;Median&#34; or &#34;Std&#34;.
+
+    pm_feat : optional list of str, default=None
+        List of feature to sum and substract. The names of features must be existing features.
+
+    kd_feat : optional list of str, default=None
+        List of knowledge-domain features. The name of a knowledge-domain feature must be either
+        &#34;Distance_To_Hydrology&#34;, &#34;Mean_Distance_To_Points_Of_Interest&#34;,
+        &#34;Elevation_Shifted_Horizontal_Distance_To_Hydrology&#34;,
+        &#34;Elevation_Shifted_Vertical_Distance_To_Hydrology&#34; or
+        &#34;Elevation_Shifted_Horizontal_Distance_To_Roadways&#34;.
+
+    families_feat : optional list of str, default=None
+        List of families features to compute. The name of a binary feature is expected to be either
+        &#34;Ratake&#34;, &#34;Vanet&#34;, &#34;Catamount&#34;, &#34;Leighan&#34;, &#34;Bullwark&#34;, &#34;Como&#34;, &#34;Moran&#34; or &#34;Other&#34;.
+
+    soil_feat : optional list of str, default=None
+        List of soil types features to compute. The name of a binary feature is expected to be
+        either &#34;Stony&#34;, &#34;Rubly&#34; or &#34;Other&#34;.
+
+    fixed_poly_feat : optional list of str, default=None
+        List of specific polynomial features. A fixed polynomial feature must be of the form
+        &#34;A B C&#34;. A, B and C can be features or powers of features, and their product will be
+        computed.
+
+    poly_feat : optional list of str, default=None
+        List of polynomial features to compute of which interaction terms will be computed.
+
+    all_poly_feat : bool, default=False
+        If True, will use all the computed features for polynomial interaction. Use with caution.
+
+    poly_degree : int, default=2
+        Define the degree until which products and powers of features are computed. If 1 or less,
+        there will be no polynomial features.
+
+    excl_feat : optional list of str, default=None
+        List of features names to drop.
+
+    corr_threshold : float, default=1.0
+        Correlation threshold to select features.
+
+    rescale_data : bool, default=True
+        If True, will rescale all features with zero mean and unit variance.
+
+    scaling_method : str, default=&#34;standard&#34;
+        If &#34;standard&#34;, features are rescaled with zero mean and unit variance. If &#34;positive&#34;,
+        features are rescaled between zero and one.
+
+    pca_ratio : float, default=1.0
+        Variance ratio parameter for the Principal Component Analysis.
+
+    nb_sampling : int, default=0
+        Number of predicted resampling operations.
+
+    manual_resampling : optional dict of {int: int}, default=None
+        Manual selection of number of samples for each class.
+
+    save_data : bool, default=True
+        If True, will save the computed features in two csv files, one for training and one for
+        testing.
+
+    file_suffix : str, default=&#34;final&#34;
+        Suffix to append to the training and test files if **save_data** is True.
+
+    Returns
+    -------
+    train_df : DataFrame
+        Training dataframe containing the final features and training labels.
+
+    test_df : DataFrame
+        Test dataframe containing the final features.
+
+    Raises
+    ------
+    ValueError
+        If **scaling_method** is not supported.
+    &#34;&#34;&#34;
+    # Read files
+    test_df = pd.read_csv(&#34;data/covtype.csv&#34;, index_col=[&#34;Id&#34;])
+
+    training_ids = []
+
+    with open(&#34;data/training_ids.txt&#34;, &#34;r&#34;, encoding=&#34;utf-8&#34;) as f:
+
+        training_ids = f.read().split(&#34;,&#34;)
+        training_ids = [int(x) for x in training_ids]
+
+    train_df = test_df.iloc[training_ids, :].copy()
+
+    # Shuffle
+    train_df = shuffle(train_df, random_state=seed)
+    test_df = shuffle(test_df, random_state=seed)
+
+    # Binary variables and target
+    label_var = [&#34;Cover_Type&#34;]
+    y_train = train_df[label_var]
+    train_df = train_df.drop(columns=label_var)
+    y_test = test_df[label_var]
+    test_df = test_df.drop(columns=label_var)
+
+    # Correct missing values
+    correct_feat_value(
+        seed, train_df, test_df=test_df, correct_feat=correct_feat,
+        value_to_replace=value_to_replace
+    )
+
+    # Merge binary features
+    merge_binary_feat(train_df, test_df=test_df, binary_feat=binary_feat)
+
+    # Logarithm features
+    create_log_feat(train_df, test_df=test_df, log_feat=log_feat)
+
+    # Statistics
+    create_stat_feat(train_df, test_df=test_df, stat_feat=stat_feat)
+
+    # Make some additions and differences of features
+    create_pm_feat(train_df, test_df=test_df, pm_feat=pm_feat)
+
+    # Knowledge-domain features
+    create_kd_feat(train_df, test_df=test_df, kd_feat=kd_feat)
+
+    # Groups of families
+    create_families_feat(
+        train_df, test_df=test_df, families_feat=families_feat, excl_feat=excl_feat
+    )
+
+    # Groups of soil types
+    create_soil_feat(train_df, test_df=test_df, soil_feat=soil_feat, excl_feat=excl_feat)
+
+    # Compute polynomial and interaction features
+    if all_poly_feat:
+        fixed_poly_feat = []
+        poly_feat = list(train_df.columns)
+
+    create_poly_feat(
+        train_df, test_df=test_df, fixed_poly_feat=fixed_poly_feat, poly_feat=poly_feat,
+        poly_degree=poly_degree
+    )
+
+    # Drop excluded features
+    drop_list_feat(train_df, test_df=test_df, excl_feat=excl_feat)
+
+    # Drop correlated features
+    drop_corr_feat(train_df, test_df=test_df, corr_threshold=corr_threshold)
+
+    # Rescale the data
+    if rescale_data:
+
+        if scaling_method == &#34;standard&#34;:
+            sc = StandardScaler()
+        elif scaling_method == &#34;positive&#34;:
+            sc = MinMaxScaler()
+        else:
+            err_msg = f&#34;Unsupported scaling method {scaling_method}.&#34;
+            raise ValueError(err_msg)
+
+        train_df[train_df.columns] = sc.fit_transform(train_df[train_df.columns])
+        test_df[test_df.columns] = sc.transform(test_df[test_df.columns])
+
+    elif not rescale_data and pca_ratio &lt; 1.:
+
+        warn_msg = &#34;Warning: Rescaling data is recommended when performing PCA.&#34;
+        warn_msg += &#34; Set rescale_data to True or pca_ratio to 1.&#34;
+        print(warn_msg)
+
+    # Reduce the dimensionality with PCA
+    train_df, test_df = perform_pca(seed, train_df, test_df=test_df, pca_ratio=pca_ratio)
+
+    # Predicted and manual resampling
+    train_df, y_train = training_resample(
+        seed, train_df, y_train, test_df=test_df, nb_sampling=nb_sampling,
+        manual_resampling=manual_resampling
+    )
+
+    # Print some information
+    print(&#34;Final training shape: &#34;, train_df.shape)
+    print(&#34;The features are: &#34;, train_df.columns)
+
+    # Re-create the label variable
+    train_df = pd.merge(train_df, y_train, left_index=True, right_index=True, how=&#34;left&#34;)
+    train_df.index.name = &#34;Id&#34;
+
+    test_df = pd.merge(test_df, y_test, left_index=True, right_index=True, how=&#34;left&#34;)
+
+    # Save the data
+    if save_data:
+        train_df.to_csv(path_or_buf=&#34;data/train_&#34; + file_suffix + &#34;.csv&#34;, header=True, index=True)
+        test_df.to_csv(path_or_buf=&#34;data/test_&#34; + file_suffix + &#34;.csv&#34;, header=True, index=True)
+
+    return train_df, test_df
+
+
+if __name__ == &#34;__main__&#34;:
+
+    # Command lines
+    parser_desc = &#34;Main file to prepare data and features.&#34;
+    parser = argparse.ArgumentParser(description=parser_desc)
+
+    # Seed
+    parser.add_argument(
+        &#34;--seed&#34;,
+        default=8005,
+        type=int,
+        help=&#34;&#34;&#34;
+             Seed to use everywhere for reproducbility.
+             Default: 42.
+             &#34;&#34;&#34;
+    )
+
+    # Correct missing values
+    parser.add_argument(
+        &#34;--correct-feat&#34;,
+        default=[&#34;Hillshade_3pm&#34;],
+        nargs=&#34;*&#34;,
+        help=&#34;&#34;&#34;
+             List of features where a specific value has to be replaced.
+             &#34;&#34;&#34;
+    )
+
+    parser.add_argument(
+        &#34;--value&#34;,
+        default=0,
+        type=float,
+        help=&#34;&#34;&#34;
+             Value to replace by predictions.
+             Default: 0.
+             &#34;&#34;&#34;
+    )
+
+    # Merge binary features
+    parser.add_argument(
+        &#34;--binary-feat&#34;,
+        default=[],
+        nargs=&#34;*&#34;,
+        help=&#34;&#34;&#34;
+             List of binary features to merge. The name of a binary feature is expected to be of
+             the form &#34;Ax&#34;. A the base and final feature. x is the number of each related binary
+             feature.
+             &#34;&#34;&#34;
+    )
+
+    # Logarithm features
+    parser.add_argument(
+        &#34;--log-feat&#34;,
+        default=[
+            &#34;Horizontal_Distance_To_Hydrology&#34;, &#34;Horizontal_Distance_To_Roadways&#34;,
+            &#34;Horizontal_Distance_To_Fire_Points&#34;
+        ],
+        nargs=&#34;*&#34;,
+        help=&#34;&#34;&#34;
+             List of logarithm features. The name of a log feature must be an existing feature.
+             &#34;&#34;&#34;
+    )
+
+    # Statistics features
+    parser.add_argument(
+        &#34;--stat-feat&#34;,
+        default=[&#34;Max&#34;, &#34;Std&#34;],
+        nargs=&#34;*&#34;,
+        help=&#34;&#34;&#34;
+             List of stat features. The name of a stat feature must be either &#34;Max&#34;, &#34;Min&#34;, &#34;Mean&#34;,
+             &#34;Median&#34; or &#34;Std&#34;.
+             &#34;&#34;&#34;
+    )
+
+    # Make some additions and differences of features
+    parser.add_argument(
+        &#34;--pm-feat&#34;,
+        default=[
+            &#34;Horizontal_Distance_To_Hydrology&#34;, &#34;Horizontal_Distance_To_Roadways&#34;,
+            &#34;Horizontal_Distance_To_Fire_Points&#34;
+        ],
+        nargs=&#34;*&#34;,
+        help=&#34;&#34;&#34;
+             List of feature to sum and substract. The names of features must be existing features.
+             &#34;&#34;&#34;
+    )
+
+    # Knowledge-domain features
+    parser.add_argument(
+        &#34;--kd-feat&#34;,
+        default=[
+            &#34;Distance_To_Hydrology&#34;, &#34;Mean_Distance_To_Points_Of_Interest&#34;,
+            &#34;Elevation_Shifted_Horizontal_Distance_To_Hydrology&#34;,
+            &#34;Elevation_Shifted_Vertical_Distance_To_Hydrology&#34;,
+            &#34;Elevation_Shifted_Horizontal_Distance_To_Roadways&#34;
+        ],
+        nargs=&#34;*&#34;,
+        help=&#34;&#34;&#34;
+             List of knowledge-domain features. The name of a knowledge-domain feature must be
+             either &#34;Distance_To_Hydrology&#34;, &#34;Mean_Distance_To_Points_Of_Interest&#34;,
+             &#34;Elevation_Shifted_Horizontal_Distance_To_Hydrology&#34;,
+             &#34;Elevation_Shifted_Vertical_Distance_To_Hydrology&#34; or
+             &#34;Elevation_Shifted_Horizontal_Distance_To_Roadways&#34;.
+             &#34;&#34;&#34;
+    )
+
+    # Groups of families
+    parser.add_argument(
+        &#34;--families-feat&#34;,
+        default=[&#34;Ratake&#34;, &#34;Vanet&#34;, &#34;Catamount&#34;, &#34;Leighan&#34;, &#34;Bullwark&#34;, &#34;Como&#34;, &#34;Moran&#34;, &#34;Other&#34;],
+        nargs=&#34;*&#34;,
+        help=&#34;&#34;&#34;
+             List of families features to compute. The name of a binary feature is expected to be
+             either &#34;Ratake&#34;, &#34;Vanet&#34;, &#34;Catamount&#34;, &#34;Leighan&#34;, &#34;Bullwark&#34;, &#34;Como&#34;, &#34;Moran&#34; or
+             &#34;Other&#34;.
+             &#34;&#34;&#34;
+    )
+
+    # Groups of soil types features
+    parser.add_argument(
+        &#34;--soil-feat&#34;,
+        default=[&#34;Stony&#34;, &#34;Rubly&#34;],
+        nargs=&#34;*&#34;,
+        help=&#34;&#34;&#34;
+             List of soil types features to compute. The name of a binary feature is expected to be
+             either &#34;Stony&#34;, &#34;Rubly&#34; or &#34;Other&#34;.
+             &#34;&#34;&#34;
+    )
+
+    # Polynomial features
+    parser.add_argument(
+        &#34;--fixed-poly-feat&#34;,
+        default=[],
+        nargs=&#34;*&#34;,
+        help=&#34;&#34;&#34;
+             List of specific polynomial features. A fixed polynomial feature must be of the form
+             &#34;A B C&#34;. A, B and C can be features or powers of features, and their product will be
+             computed.
+             Example: --fixed-poly-feat &#34;char_count^2 group_overlap&#34;.
+             &#34;&#34;&#34;
+    )
+
+    parser.add_argument(
+        &#34;--poly-feat&#34;,
+        default=[
+            &#34;Horizontal_Distance_To_Roadways_Log&#34;, &#34;Horizontal_Distance_To_Fire_Points_Log&#34;,
+            &#34;Elevation_Shifted_Vertical_Distance_To_Hydrology&#34;,
+            &#34;Elevation_Shifted_Horizontal_Distance_To_Hydrology&#34;
+        ],
+        nargs=&#34;*&#34;,
+        help=&#34;&#34;&#34;
+             List of polynomial features to compute of which interaction terms will be computed.
+             Example: --poly-feat ldp_idf char_count.
+             &#34;&#34;&#34;
+    )
+    parser.add_argument(
+        &#34;--all-poly-feat&#34;,
+        action=&#34;store_true&#34;,
+        help=&#34;&#34;&#34;
+             Use this option to activate polynomial interaction of all features. Use with
+             caution.
+             Default: Deactivated.
+             &#34;&#34;&#34;
+    )
+    parser.set_defaults(all_poly_feat=False)
+    parser.add_argument(
+        &#34;--poly-degree&#34;,
+        default=2,
+        type=int,
+        help=&#34;&#34;&#34;
+             Define the degree until which products and powers of features are computed. If 1 or
+             less, there will be no polynomial features.
+             Default: 2.
+             &#34;&#34;&#34;
+    )
+
+    # Excluded features
+    parser.add_argument(
+        &#34;--excl-feat&#34;,
+        default=[&#34;Soil_Type15&#34;],
+        nargs=&#34;*&#34;,
+        help=&#34;&#34;&#34;
+             List of features names to drop after computation.
+             Example: --excl-feat &#34;char_count^2 group_overlap&#34;.
+             &#34;&#34;&#34;
+    )
+
+    # Correlation threshold
+    parser.add_argument(
+        &#34;--max-correlation&#34;,
+        default=1.,
+        type=float,
+        help=&#34;&#34;&#34;
+             Correlation threshold to select features.
+             Default: 1.0.
+             &#34;&#34;&#34;
+    )
+
+    # Rescale data
+    parser.add_argument(
+        &#34;--rescale-data&#34;,
+        action=&#34;store_true&#34;,
+        help=&#34;&#34;&#34;
+             Use this option to activate rescaling the data sets.
+             Default: Activated.
+             &#34;&#34;&#34;
+    )
+    parser.add_argument(
+        &#34;--no-rescale-data&#34;,
+        action=&#34;store_false&#34;,
+        dest=&#34;rescale-data&#34;,
+        help=&#34;&#34;&#34;
+             Use this option to deactivate rescaling the data sets.
+             Default: Activated.
+             &#34;&#34;&#34;
+    )
+    parser.set_defaults(rescale_data=True)
+
+    parser.add_argument(
+        &#34;--scaling-method&#34;,
+        default=&#34;standard&#34;,
+        type=str,
+        help=&#34;&#34;&#34;
+             If &#34;standard&#34;, features are rescaled with zero mean and unit variance. If &#34;positive&#34;,
+             features are rescaled between zero and one.
+             Default: &#34;standard&#34;.
+             &#34;&#34;&#34;
+    )
+
+    # PCA ratio
+    parser.add_argument(
+        &#34;--pca-ratio&#34;,
+        default=1.,
+        type=float,
+        help=&#34;&#34;&#34;
+             Variance ratio parameter for the Principal Component Analysis.
+             Default: 1.0.
+             &#34;&#34;&#34;
+    )
+
+    # Resampling
+    parser.add_argument(
+        &#34;--nb-sampling&#34;,
+        default=0,
+        type=int,
+        help=&#34;&#34;&#34;
+             Number of predicted resampling operations.
+             Default: 0.
+             &#34;&#34;&#34;
+    )
+
+    parser.add_argument(
+        &#34;--manual-resampling&#34;,
+        default=&#34;1:5500,2:7000,3:1000,4:50,5:450,6:500,7:650&#34;,
+        type=lambda x: {int(k): int(v) for k, v in (i.split(&#34;:&#34;) for i in x.split(&#34;,&#34;))},
+        help=&#34;&#34;&#34;
+             Manual selection of number of samples for each class.
+             &#34;&#34;&#34;
+    )
+
+    # Save data
+    parser.add_argument(
+        &#34;--save-data&#34;,
+        action=&#34;store_true&#34;,
+        help=&#34;&#34;&#34;
+             Use this option to activate saving the data sets.
+             Default: Activated.
+             &#34;&#34;&#34;
+    )
+    parser.add_argument(
+        &#34;--no-save-data&#34;,
+        action=&#34;store_false&#34;,
+        dest=&#34;save-data&#34;,
+        help=&#34;&#34;&#34;
+             Use this option to deactivate saving the data sets.
+             Default: Activated.
+             &#34;&#34;&#34;
+    )
+    parser.set_defaults(save_data=True)
+
+    parser.add_argument(
+        &#34;--file-suffix&#34;,
+        default=&#34;final&#34;,
+        type=str,
+        help=&#34;&#34;&#34;
+             Suffix to append to the training and test files if **save_data** is True.
+             Default: &#34;final&#34;.
+             &#34;&#34;&#34;
+    )
+
+    # End of command lines
+    args = parser.parse_args()
+
+    create_features(
+        seed=args.seed,
+        correct_feat=args.correct_feat,
+        value_to_replace=args.value,
+        binary_feat=args.binary_feat,
+        log_feat=args.log_feat,
+        stat_feat=args.stat_feat,
+        kd_feat=args.kd_feat,
+        pm_feat=args.pm_feat,
+        families_feat=args.families_feat,
+        soil_feat=args.soil_feat,
+        fixed_poly_feat=args.fixed_poly_feat,
+        poly_feat=args.poly_feat,
+        all_poly_feat=args.all_poly_feat,
+        poly_degree=args.poly_degree,
+        excl_feat=args.excl_feat,
+        corr_threshold=float_zero_one(args.max_correlation),
+        rescale_data=args.rescale_data,
+        scaling_method=args.scaling_method,
+        pca_ratio=float_zero_one(args.save_data),
+        nb_sampling=args.nb_sampling,
+        manual_resampling=args.manual_resampling,
+        save_data=args.save_data,
+        file_suffix=args.file_suffix
+    )</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="src.data_preparation.create_features"><code class="name flex">
+<span>def <span class="ident">create_features</span></span>(<span>seed: int = 42, correct_feat: Optional[List[str]] = None, value_to_replace: float = 0.0, binary_feat: Optional[List[str]] = None, log_feat: Optional[List[str]] = None, stat_feat: Optional[List[str]] = None, pm_feat: Optional[List[str]] = None, kd_feat: Optional[List[str]] = None, families_feat: Optional[List[str]] = None, soil_feat: Optional[List[str]] = None, fixed_poly_feat: Optional[List[str]] = None, poly_feat: Optional[List[str]] = None, all_poly_feat: bool = False, poly_degree: int = 2, excl_feat: Optional[List[str]] = None, corr_threshold: float = 0.8, rescale_data: bool = True, scaling_method: str = 'standard', pca_ratio: float = 0.95, nb_sampling: int = 0, manual_resampling: Optional[Dict[int, int]] = None, save_data: bool = True, file_suffix: str = 'final') ‑> Tuple[pandas.core.frame.DataFrame, ...]</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieve local data files and perform preprocessing oprations.</p>
+<h2 id="parameters">Parameters</h2>
+<dl>
+<dt><strong><code>seed</code></strong> :&ensp;<code>int</code>, default=<code>42</code></dt>
+<dd>Seed to use everywhere for reproducibility.</dd>
+<dt><strong><code>correct_feat</code></strong> :&ensp;<code>optional list</code> of <code>str</code>, default=<code>None</code></dt>
+<dd>List of features where a specific value has to be replaced.</dd>
+<dt><strong><code>value_to_replace</code></strong> :&ensp;<code>float</code>, default=<code>0.0</code></dt>
+<dd>Value to replace by predictions.</dd>
+<dt><strong><code>binary_feat</code></strong> :&ensp;<code>optional list</code> of <code>str</code>, default=<code>None</code></dt>
+<dd>List of binary features to merge. The name of a binary feature is expected to be of the
+form "Ax". A the base and final feature. x is the number of each related binary feature.</dd>
+<dt><strong><code>log_feat</code></strong> :&ensp;<code>optional list</code> of <code>str</code>, default=<code>None</code></dt>
+<dd>List of logarithm features. The name of a log feature must be an existing feature.</dd>
+<dt><strong><code>stat_feat</code></strong> :&ensp;<code>optional list</code> of <code>str</code>, default=<code>None</code></dt>
+<dd>List of stat features. The name of a stat feature must be either "Max", "Min", "Mean",
+"Median" or "Std".</dd>
+<dt><strong><code>pm_feat</code></strong> :&ensp;<code>optional list</code> of <code>str</code>, default=<code>None</code></dt>
+<dd>List of feature to sum and substract. The names of features must be existing features.</dd>
+<dt><strong><code>kd_feat</code></strong> :&ensp;<code>optional list</code> of <code>str</code>, default=<code>None</code></dt>
+<dd>List of knowledge-domain features. The name of a knowledge-domain feature must be either
+"Distance_To_Hydrology", "Mean_Distance_To_Points_Of_Interest",
+"Elevation_Shifted_Horizontal_Distance_To_Hydrology",
+"Elevation_Shifted_Vertical_Distance_To_Hydrology" or
+"Elevation_Shifted_Horizontal_Distance_To_Roadways".</dd>
+<dt><strong><code>families_feat</code></strong> :&ensp;<code>optional list</code> of <code>str</code>, default=<code>None</code></dt>
+<dd>List of families features to compute. The name of a binary feature is expected to be either
+"Ratake", "Vanet", "Catamount", "Leighan", "Bullwark", "Como", "Moran" or "Other".</dd>
+<dt><strong><code>soil_feat</code></strong> :&ensp;<code>optional list</code> of <code>str</code>, default=<code>None</code></dt>
+<dd>List of soil types features to compute. The name of a binary feature is expected to be
+either "Stony", "Rubly" or "Other".</dd>
+<dt><strong><code>fixed_poly_feat</code></strong> :&ensp;<code>optional list</code> of <code>str</code>, default=<code>None</code></dt>
+<dd>List of specific polynomial features. A fixed polynomial feature must be of the form
+"A B C". A, B and C can be features or powers of features, and their product will be
+computed.</dd>
+<dt><strong><code>poly_feat</code></strong> :&ensp;<code>optional list</code> of <code>str</code>, default=<code>None</code></dt>
+<dd>List of polynomial features to compute of which interaction terms will be computed.</dd>
+<dt><strong><code>all_poly_feat</code></strong> :&ensp;<code>bool</code>, default=<code>False</code></dt>
+<dd>If True, will use all the computed features for polynomial interaction. Use with caution.</dd>
+<dt><strong><code>poly_degree</code></strong> :&ensp;<code>int</code>, default=<code>2</code></dt>
+<dd>Define the degree until which products and powers of features are computed. If 1 or less,
+there will be no polynomial features.</dd>
+<dt><strong><code>excl_feat</code></strong> :&ensp;<code>optional list</code> of <code>str</code>, default=<code>None</code></dt>
+<dd>List of features names to drop.</dd>
+<dt><strong><code>corr_threshold</code></strong> :&ensp;<code>float</code>, default=<code>1.0</code></dt>
+<dd>Correlation threshold to select features.</dd>
+<dt><strong><code>rescale_data</code></strong> :&ensp;<code>bool</code>, default=<code>True</code></dt>
+<dd>If True, will rescale all features with zero mean and unit variance.</dd>
+<dt><strong><code>scaling_method</code></strong> :&ensp;<code>str</code>, default=<code>"standard"</code></dt>
+<dd>If "standard", features are rescaled with zero mean and unit variance. If "positive",
+features are rescaled between zero and one.</dd>
+<dt><strong><code>pca_ratio</code></strong> :&ensp;<code>float</code>, default=<code>1.0</code></dt>
+<dd>Variance ratio parameter for the Principal Component Analysis.</dd>
+<dt><strong><code>nb_sampling</code></strong> :&ensp;<code>int</code>, default=<code>0</code></dt>
+<dd>Number of predicted resampling operations.</dd>
+<dt><strong><code>manual_resampling</code></strong> :&ensp;<code>optional dict</code> of <code>{int: int}</code>, default=<code>None</code></dt>
+<dd>Manual selection of number of samples for each class.</dd>
+<dt><strong><code>save_data</code></strong> :&ensp;<code>bool</code>, default=<code>True</code></dt>
+<dd>If True, will save the computed features in two csv files, one for training and one for
+testing.</dd>
+<dt><strong><code>file_suffix</code></strong> :&ensp;<code>str</code>, default=<code>"final"</code></dt>
+<dd>Suffix to append to the training and test files if <strong>save_data</strong> is True.</dd>
+</dl>
+<h2 id="returns">Returns</h2>
+<dl>
+<dt><strong><code>train_df</code></strong> :&ensp;<code>DataFrame</code></dt>
+<dd>Training dataframe containing the final features and training labels.</dd>
+<dt><strong><code>test_df</code></strong> :&ensp;<code>DataFrame</code></dt>
+<dd>Test dataframe containing the final features.</dd>
+</dl>
+<h2 id="raises">Raises</h2>
+<dl>
+<dt><code>ValueError</code></dt>
+<dd>If <strong>scaling_method</strong> is not supported.</dd>
+</dl></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def create_features(
+    seed: int = 42,
+    correct_feat: Optional[List[str]] = None,
+    value_to_replace: float = 0.,
+    binary_feat: Optional[List[str]] = None,
+    log_feat: Optional[List[str]] = None,
+    stat_feat: Optional[List[str]] = None,
+    pm_feat: Optional[List[str]] = None,
+    kd_feat: Optional[List[str]] = None,
+    families_feat: Optional[List[str]] = None,
+    soil_feat: Optional[List[str]] = None,
+    fixed_poly_feat: Optional[List[str]] = None,
+    poly_feat: Optional[List[str]] = None,
+    all_poly_feat: bool = False,
+    poly_degree: int = 2,
+    excl_feat: Optional[List[str]] = None,
+    corr_threshold: float = 0.8,
+    rescale_data: bool = True,
+    scaling_method: str = &#34;standard&#34;,
+    pca_ratio: float = 0.95,
+    nb_sampling: int = 0,
+    manual_resampling: Optional[Dict[int, int]] = None,
+    save_data: bool = True,
+    file_suffix: str = &#34;final&#34;
+) -&gt; Tuple[DataFrame, ...]:
+    &#34;&#34;&#34;Retrieve local data files and perform preprocessing oprations.
+
+    Parameters
+    ----------
+    seed : int, default=42
+        Seed to use everywhere for reproducibility.
+
+    correct_feat : optional list of str, default=None
+        List of features where a specific value has to be replaced.
+
+    value_to_replace : float, default=0.0
+        Value to replace by predictions.
+
+    binary_feat : optional list of str, default=None
+        List of binary features to merge. The name of a binary feature is expected to be of the
+        form &#34;Ax&#34;. A the base and final feature. x is the number of each related binary feature.
+
+    log_feat : optional list of str, default=None
+        List of logarithm features. The name of a log feature must be an existing feature.
+
+    stat_feat : optional list of str, default=None
+        List of stat features. The name of a stat feature must be either &#34;Max&#34;, &#34;Min&#34;, &#34;Mean&#34;,
+        &#34;Median&#34; or &#34;Std&#34;.
+
+    pm_feat : optional list of str, default=None
+        List of feature to sum and substract. The names of features must be existing features.
+
+    kd_feat : optional list of str, default=None
+        List of knowledge-domain features. The name of a knowledge-domain feature must be either
+        &#34;Distance_To_Hydrology&#34;, &#34;Mean_Distance_To_Points_Of_Interest&#34;,
+        &#34;Elevation_Shifted_Horizontal_Distance_To_Hydrology&#34;,
+        &#34;Elevation_Shifted_Vertical_Distance_To_Hydrology&#34; or
+        &#34;Elevation_Shifted_Horizontal_Distance_To_Roadways&#34;.
+
+    families_feat : optional list of str, default=None
+        List of families features to compute. The name of a binary feature is expected to be either
+        &#34;Ratake&#34;, &#34;Vanet&#34;, &#34;Catamount&#34;, &#34;Leighan&#34;, &#34;Bullwark&#34;, &#34;Como&#34;, &#34;Moran&#34; or &#34;Other&#34;.
+
+    soil_feat : optional list of str, default=None
+        List of soil types features to compute. The name of a binary feature is expected to be
+        either &#34;Stony&#34;, &#34;Rubly&#34; or &#34;Other&#34;.
+
+    fixed_poly_feat : optional list of str, default=None
+        List of specific polynomial features. A fixed polynomial feature must be of the form
+        &#34;A B C&#34;. A, B and C can be features or powers of features, and their product will be
+        computed.
+
+    poly_feat : optional list of str, default=None
+        List of polynomial features to compute of which interaction terms will be computed.
+
+    all_poly_feat : bool, default=False
+        If True, will use all the computed features for polynomial interaction. Use with caution.
+
+    poly_degree : int, default=2
+        Define the degree until which products and powers of features are computed. If 1 or less,
+        there will be no polynomial features.
+
+    excl_feat : optional list of str, default=None
+        List of features names to drop.
+
+    corr_threshold : float, default=1.0
+        Correlation threshold to select features.
+
+    rescale_data : bool, default=True
+        If True, will rescale all features with zero mean and unit variance.
+
+    scaling_method : str, default=&#34;standard&#34;
+        If &#34;standard&#34;, features are rescaled with zero mean and unit variance. If &#34;positive&#34;,
+        features are rescaled between zero and one.
+
+    pca_ratio : float, default=1.0
+        Variance ratio parameter for the Principal Component Analysis.
+
+    nb_sampling : int, default=0
+        Number of predicted resampling operations.
+
+    manual_resampling : optional dict of {int: int}, default=None
+        Manual selection of number of samples for each class.
+
+    save_data : bool, default=True
+        If True, will save the computed features in two csv files, one for training and one for
+        testing.
+
+    file_suffix : str, default=&#34;final&#34;
+        Suffix to append to the training and test files if **save_data** is True.
+
+    Returns
+    -------
+    train_df : DataFrame
+        Training dataframe containing the final features and training labels.
+
+    test_df : DataFrame
+        Test dataframe containing the final features.
+
+    Raises
+    ------
+    ValueError
+        If **scaling_method** is not supported.
+    &#34;&#34;&#34;
+    # Read files
+    test_df = pd.read_csv(&#34;data/covtype.csv&#34;, index_col=[&#34;Id&#34;])
+
+    training_ids = []
+
+    with open(&#34;data/training_ids.txt&#34;, &#34;r&#34;, encoding=&#34;utf-8&#34;) as f:
+
+        training_ids = f.read().split(&#34;,&#34;)
+        training_ids = [int(x) for x in training_ids]
+
+    train_df = test_df.iloc[training_ids, :].copy()
+
+    # Shuffle
+    train_df = shuffle(train_df, random_state=seed)
+    test_df = shuffle(test_df, random_state=seed)
+
+    # Binary variables and target
+    label_var = [&#34;Cover_Type&#34;]
+    y_train = train_df[label_var]
+    train_df = train_df.drop(columns=label_var)
+    y_test = test_df[label_var]
+    test_df = test_df.drop(columns=label_var)
+
+    # Correct missing values
+    correct_feat_value(
+        seed, train_df, test_df=test_df, correct_feat=correct_feat,
+        value_to_replace=value_to_replace
+    )
+
+    # Merge binary features
+    merge_binary_feat(train_df, test_df=test_df, binary_feat=binary_feat)
+
+    # Logarithm features
+    create_log_feat(train_df, test_df=test_df, log_feat=log_feat)
+
+    # Statistics
+    create_stat_feat(train_df, test_df=test_df, stat_feat=stat_feat)
+
+    # Make some additions and differences of features
+    create_pm_feat(train_df, test_df=test_df, pm_feat=pm_feat)
+
+    # Knowledge-domain features
+    create_kd_feat(train_df, test_df=test_df, kd_feat=kd_feat)
+
+    # Groups of families
+    create_families_feat(
+        train_df, test_df=test_df, families_feat=families_feat, excl_feat=excl_feat
+    )
+
+    # Groups of soil types
+    create_soil_feat(train_df, test_df=test_df, soil_feat=soil_feat, excl_feat=excl_feat)
+
+    # Compute polynomial and interaction features
+    if all_poly_feat:
+        fixed_poly_feat = []
+        poly_feat = list(train_df.columns)
+
+    create_poly_feat(
+        train_df, test_df=test_df, fixed_poly_feat=fixed_poly_feat, poly_feat=poly_feat,
+        poly_degree=poly_degree
+    )
+
+    # Drop excluded features
+    drop_list_feat(train_df, test_df=test_df, excl_feat=excl_feat)
+
+    # Drop correlated features
+    drop_corr_feat(train_df, test_df=test_df, corr_threshold=corr_threshold)
+
+    # Rescale the data
+    if rescale_data:
+
+        if scaling_method == &#34;standard&#34;:
+            sc = StandardScaler()
+        elif scaling_method == &#34;positive&#34;:
+            sc = MinMaxScaler()
+        else:
+            err_msg = f&#34;Unsupported scaling method {scaling_method}.&#34;
+            raise ValueError(err_msg)
+
+        train_df[train_df.columns] = sc.fit_transform(train_df[train_df.columns])
+        test_df[test_df.columns] = sc.transform(test_df[test_df.columns])
+
+    elif not rescale_data and pca_ratio &lt; 1.:
+
+        warn_msg = &#34;Warning: Rescaling data is recommended when performing PCA.&#34;
+        warn_msg += &#34; Set rescale_data to True or pca_ratio to 1.&#34;
+        print(warn_msg)
+
+    # Reduce the dimensionality with PCA
+    train_df, test_df = perform_pca(seed, train_df, test_df=test_df, pca_ratio=pca_ratio)
+
+    # Predicted and manual resampling
+    train_df, y_train = training_resample(
+        seed, train_df, y_train, test_df=test_df, nb_sampling=nb_sampling,
+        manual_resampling=manual_resampling
+    )
+
+    # Print some information
+    print(&#34;Final training shape: &#34;, train_df.shape)
+    print(&#34;The features are: &#34;, train_df.columns)
+
+    # Re-create the label variable
+    train_df = pd.merge(train_df, y_train, left_index=True, right_index=True, how=&#34;left&#34;)
+    train_df.index.name = &#34;Id&#34;
+
+    test_df = pd.merge(test_df, y_test, left_index=True, right_index=True, how=&#34;left&#34;)
+
+    # Save the data
+    if save_data:
+        train_df.to_csv(path_or_buf=&#34;data/train_&#34; + file_suffix + &#34;.csv&#34;, header=True, index=True)
+        test_df.to_csv(path_or_buf=&#34;data/test_&#34; + file_suffix + &#34;.csv&#34;, header=True, index=True)
+
+    return train_df, test_df</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="src" href="index.html">src</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="src.data_preparation.create_features" href="#src.data_preparation.create_features">create_features</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
