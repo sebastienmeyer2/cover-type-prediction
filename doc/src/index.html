@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>src API documentation</title>
+<meta name="description" content="Source code for the forest cover type prediction …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS_CHTML" integrity="sha256-kZafAc6mZvK3W3v1pHOcUix30OHQN6pU/NO2oFkqZVw=" crossorigin></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Package <code>src</code></h1>
+</header>
+<section id="section-intro">
+<p>Source code for the forest cover type prediction.</p>
+<h1 id="cover-type-prediction">Cover Type Prediction</h1>
+<p>Predicting forest cover type from cartographic variables only (no remotely sensed data). The actual forest cover type for a given observation (30 x 30 meter cell) was determined from US Forest Service (USFS) Region 2 Resource Information System (RIS) data. Independent variables were derived from data originally obtained from US Geological Survey (USGS) and USFS data. Data is in raw form (not scaled) and contains binary (0 or 1) columns of data for qualitative independent variables (wilderness areas and soil types).</p>
+<p>The data set is available at: <a href="https://archive.ics.uci.edu/ml/datasets/covertype.">https://archive.ics.uci.edu/ml/datasets/covertype.</a></p>
+<p>Please refer to the following sections for more information about the package usage:</p>
+<ol>
+<li><a href="#our-results">Our results</a></li>
+<li><a href="#installation-instructions">Installation</a></li>
+<li><a href="#package-description">Description</a></li>
+<li><a href="#package-usage">Usage via command lines</a></li>
+<li><a href="#documentation">Documentation</a></li>
+</ol>
+<h2 id="our-results">Our results</h2>
+<p>A brief summary of our results is available in our report under <em>report/report.pdf</em>. Below, we only give a summary table of the test accuracy of different models.</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Test accuracy</th>
+<th>Features</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Random Forest</td>
+<td>0.76173</td>
+<td>base + merged binary features</td>
+</tr>
+<tr>
+<td>LightGBM</td>
+<td>0.78374</td>
+<td>base + merged binary features</td>
+</tr>
+<tr>
+<td>Extra Trees</td>
+<td>0.82622</td>
+<td>base + some interaction terms and statistics + shifted features</td>
+</tr>
+<tr>
+<td>Stacking</td>
+<td>0.83822</td>
+<td>base + some interaction terms and statistics + shifted features</td>
+</tr>
+<tr>
+<td>Extra Trees</td>
+<td>0.85905</td>
+<td>base + some interaction terms and statistics + shifted features + groups + resampling</td>
+</tr>
+</tbody>
+</table>
+<h2 id="installation-instructions">Installation instructions</h2>
+<p>In order to use our package and run your own experiments, we advise you to set up a virtual environment. The package has been tested under Python version 3.7.12, you will also need the <em>virtualenv</em> package:</p>
+<pre><code>pip3 install virtualenv
+</code></pre>
+<p>Then, you can create a virtual environment and switch to it with the following commands:</p>
+<pre><code>python3 -m venv myvenv
+source myvenv/bin/activate (Linux)
+myvenv/Scripts/Activate.ps1 (Windows PowerShell)
+</code></pre>
+<p>All the needed packages are listed in the <em>requirements.txt</em> file, you can install them with:</p>
+<pre><code>pip3 install -r requirements.txt
+</code></pre>
+<h2 id="package-description">Package description</h2>
+<p>Below, we give a brief tree view of our package.</p>
+<pre><code>.
+├── data
+|   └── training_ids.txt  # subset of ids for training
+├── doc  # contains a generated documentation of src/ in html
+├── report  # contains our complete report in pdf format
+|   └── figures
+├── src  # source code
+|   ├── engine
+|   |   ├── models
+|   |   |   ├── __init__.py
+|   |   |   └── base.py  # scikit-learn compatible classifiers and manual stacking
+|   |   ├── __init__.py
+|   |   ├── gridsearch.py
+|   |   ├── hub.py  # to prepare data and create models
+|   |   └── training.py 
+|   ├── preprocessing
+|   |   ├── features  # multiple files for each type of features
+|   |   ├── reduction  # multiple files for feature selection
+|   |   ├── __init__.py
+|   |   ├── reader.py  # to read preprocessed files
+|   |   └── resampling.py  # undersampling/oversampling operations
+|   ├── utils 
+|   ├── __init__.py
+|   ├── data_preparation.py  # main file to compute features
+|   └── main.py  # main file to run gridsearch
+├── README.md
+├── first_glimpse.ipynb  # first look at the data set
+├── feature_engineering.ipynb  # large part of our research for valuable features
+├── model_selection.ipynb  # selection of features and models
+└── requirements.txt  # contains the necessary Python packages to run our files
+</code></pre>
+<h2 id="package-usage">Package usage</h2>
+<h3 id="downloading-the-data">Downloading the data</h3>
+<p>We expect you to download and extract the data set from <a href="https://archive.ics.uci.edu/ml/datasets/covertype.">https://archive.ics.uci.edu/ml/datasets/covertype.</a> Then, put the data file in a <em>data/</em> folder, along with the <em>training_ids.txt</em> file.</p>
+<h3 id="notebooks">Notebooks</h3>
+<p>In order to use the notebooks, you will also need to install jupyter:</p>
+<pre><code>pip3 install jupyter notebook ipykernel
+ipython kernel install --user --name=myvenv
+</code></pre>
+<p>There are three available notebooks:</p>
+<ul>
+<li><em>first_glimpse.ipynb</em>: this notebook studies the train and test dataframes to understand the classification task and look for missing values</li>
+<li><em>feature_engineering.ipynb</em>: this notebook gathers many if not all features that were tested for this data set</li>
+<li><em>model_selection.ipynb</em>: this notebook allows to test different machine learning models and subset of features</li>
+</ul>
+<h3 id="feature-engineering">Feature engineering</h3>
+<p>In order to create your own data set for training, you can use the <em>src/data_preparation.py</em> file to create features:</p>
+<pre><code>python3 src/data_preparation.py [options]
+</code></pre>
+<p>A selection of best features and options is already available as default arguments. Here is a description of the available options:</p>
+<ul>
+<li>
+<p><code>--seed</code>: Seed to use everywhere for reproducbility. Default: 42.</p>
+</li>
+<li>
+<p><code>--correct-feat</code>: List of features where a specific value has to be replaced.</p>
+</li>
+<li>
+<p><code>--value</code>: Value to replace by predictions. Default: 0.</p>
+</li>
+<li>
+<p><code>--binary-feat</code>: List of binary features to merge. The name of a binary feature is expected to be the base and final feature name, for example "Soil_Type".</p>
+</li>
+<li>
+<p><code>--log-feat</code>: List of logarithm features. The name of a log feature is expected to be an existing feature.</p>
+</li>
+<li>
+<p><code>--stat-feat</code>: List of stat features. The name of a stat feature is expected to be either "Max", "Min", "Mean", "Median" or "Std".</p>
+</li>
+<li>
+<p><code>--pm-feat</code>: List of feature to sum and substract. The name of a pm feature is expected to be an existing features.</p>
+</li>
+<li>
+<p><code>--kd-feat</code>: List of knowledge-domain features. The name of a knowledge-domain feature is expected to be either "Distance_To_Hydrology", "Mean_Distance_To_Points_Of_Interest", "Elevation_Shifted_Horizontal_Distance_To_Hydrology", "Elevation_Shifted_Vertical_Distance_To_Hydrology" or "Elevation_Shifted_Horizontal_Distance_To_Roadways".</p>
+</li>
+<li>
+<p><code>--families-feat</code>: List of families features to compute. The name of a binary feature is expected to be either "Ratake", "Vanet", "Catamount", "Leighan", "Bullwark", "Como", "Moran" or "Other".</p>
+</li>
+<li>
+<p><code>--soil-feat</code>: List of soil types features to compute. The name of a binary feature is expected to be either "Stony", "Rubly" or "Other".</p>
+</li>
+<li>
+<p><code>--fixed-poly-feat</code>: List of specific polynomial features. A fixed polynomial feature must be of the form "A B C". A, B and C can be features or powers of features, and their product will be computed. Example: &ndash;fixed-poly-feat "char_count^2 group_overlap".</p>
+</li>
+<li><code>--poly-feat</code>: List of polynomial features to compute of which interaction terms will be computed.</li>
+<li><code>--all-poly-feat</code>: Use this option to activate polynomial interaction of all features. Use with caution. Default: Deactivated.</li>
+<li>
+<p><code>--poly-degree</code>: Define the degree until which products and powers of features are computed. If 1 or less, there will be no polynomial features. Default: 2.</p>
+</li>
+<li>
+<p><code>--excl-feat</code>: List of features names to drop after computation. Example: &ndash;excl-feat "char_count^2 group_overlap".</p>
+</li>
+<li>
+<p><code>--max-correlation</code>: Correlation threshold to select features. Default: 1.0.</p>
+</li>
+<li>
+<p><code>--rescale-data</code>: Use this option to activate rescaling the data sets. Default: Activated.</p>
+</li>
+<li><code>--no-rescale-data</code>: Use this option to deactivate rescaling the data sets. Default: Activated.</li>
+<li>
+<p><code>--scaling-method</code>: If "standard", features are rescaled with zero mean and unit variance. If "positive", features are rescaled between zero and one. Default: "standard".</p>
+</li>
+<li>
+<p><code>--pca-ratio</code>: Variance ratio parameter for the Principal Component Analysis. Default: 1.0.</p>
+</li>
+<li>
+<p><code>--nb-sampling</code>: Number of predicted resampling operations. Default: 0.</p>
+</li>
+<li>
+<p><code>--manual-resampling</code>: Manual selection of number of samples for each class. Example: "1:5500,2:7000,3:1000,4:50,5:450,6:500,7:650".</p>
+</li>
+<li>
+<p><code>--save-data</code>: Use this option to activate saving the data sets. Default: Activated.</p>
+</li>
+<li><code>--no-save-data</code>: Use this option to deactivate saving the data sets. Default: Activated.</li>
+<li><code>--file-suffix</code>: Suffix to append to the training and test files if <strong>save_data</strong> is True. Default: "final".</li>
+</ul>
+<h3 id="gridsearch">Gridsearch</h3>
+<p>Then, you can use the <em>src/main.py</em> file to try multiple gridsearch and models. The command is as follows:</p>
+<pre><code>python3 src/main.py [options]
+</code></pre>
+<ul>
+<li>
+<p><code>--seed</code>: Seed to use everywhere for reproducbility. Default: 42.</p>
+</li>
+<li>
+<p><code>--models-names</code>: Choose models names. Available models: "rfc", "etc", "ova", "xgboost", "lightgbm", "catboost", "logreg", "stacking" and "resampling".</p>
+</li>
+<li>
+<p><code>--data-path</code>: Path to the directory where the data is stored. Default: "data/".</p>
+</li>
+<li>
+<p><code>--file-suffix</code>: Suffix to append to the training and test files. Default: "final".</p>
+</li>
+<li>
+<p><code>--trials</code>: Choose the number of gridsearch trials. Default: 25.</p>
+</li>
+<li>
+<p><code>--trial</code>: Use this option to activate submitting a file. Default: Activated.</p>
+</li>
+<li><code>--no-trial</code>: Use this option to deactivate submitting a file. Default: Activated.</li>
+<li><code>--metric</code>: Evaluation metric for parameters gridsearch. Available metrics: "accuracy" and"f1_weighted". Default: "accuracy".</li>
+</ul>
+<h2 id="documentation">Documentation</h2>
+<p>A complete documentation is available in the <em>doc/src/</em> folder. If it is not
+generated, you can run from the root folder:</p>
+<pre><code>python3 -m pdoc -o doc/ --html --config latex_math=True --force src/
+</code></pre>
+<p>Then, open <em>doc/src/index.html</em> in your browser and follow the guide!</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;Source code for the forest cover type prediction.
+
+..include:: ../README.md
+&#34;&#34;&#34;
+
+
+import os
+import sys
+
+
+SRC_PATH = os.path.dirname(os.path.abspath(__file__))
+sys.path.append(SRC_PATH)  # trick to make pdoc3 understand that this is the package src folder</code></pre>
+</details>
+</section>
+<section>
+<h2 class="section-title" id="header-submodules">Sub-modules</h2>
+<dl>
+<dt><code class="name"><a title="src.data_preparation" href="data_preparation.html">src.data_preparation</a></code></dt>
+<dd>
+<div class="desc"><p>Utilitary functions to build new features and save the datasets.</p></div>
+</dd>
+<dt><code class="name"><a title="src.engine" href="engine/index.html">src.engine</a></code></dt>
+<dd>
+<div class="desc"><p>Create models and run gridsearch.</p></div>
+</dd>
+<dt><code class="name"><a title="src.main" href="main.html">src.main</a></code></dt>
+<dd>
+<div class="desc"><p>Main file to run trials and test models.</p></div>
+</dd>
+<dt><code class="name"><a title="src.preprocessing" href="preprocessing/index.html">src.preprocessing</a></code></dt>
+<dd>
+<div class="desc"><p>Functions to preprocess the data by reading, computing and/or removing features.</p></div>
+</dd>
+<dt><code class="name"><a title="src.utils" href="utils/index.html">src.utils</a></code></dt>
+<dd>
+<div class="desc"><p>Utilitary files.</p></div>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-submodules">Sub-modules</a></h3>
+<ul>
+<li><code><a title="src.data_preparation" href="data_preparation.html">src.data_preparation</a></code></li>
+<li><code><a title="src.engine" href="engine/index.html">src.engine</a></code></li>
+<li><code><a title="src.main" href="main.html">src.main</a></code></li>
+<li><code><a title="src.preprocessing" href="preprocessing/index.html">src.preprocessing</a></code></li>
+<li><code><a title="src.utils" href="utils/index.html">src.utils</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
